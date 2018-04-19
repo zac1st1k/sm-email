@@ -8,7 +8,7 @@ export interface EmailRequest {
 }
 
 export interface EmailResponse {
-  id: string,
+  id: string;
   from: string[];
   to: string[];
   cc: string[];

@@ -1,8 +1,11 @@
+import 'rxjs/add/operator/finally';
+
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { EmailRequest, EmailResponse } from '../models/email.model';
 import { EmailApiService } from '../services/email-api.service';
-import { EmailResponse, EmailRequest } from '../models/email.model';
 
 interface EmailFormGroup extends FormGroup {
   controls: {
@@ -24,10 +27,10 @@ interface EmailFormModel {
   body: string;
 }
 
-const EMAIL_REGULAR_EXPRESSION = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*;?$/
+const EMAIL_REGULAR_EXPRESSION = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*;?$/;
 
 @Component({
-  selector: 'app-email-form',
+  selector: 'sm-email-form',
   templateUrl: './email-form.component.html',
   styleUrls: ['./email-form.component.scss']
 })

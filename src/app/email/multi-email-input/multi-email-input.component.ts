@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-multi-email-input',
+  selector: 'sm-multi-email-input',
   templateUrl: './multi-email-input.component.html',
   styleUrls: ['./multi-email-input.component.scss']
 })
