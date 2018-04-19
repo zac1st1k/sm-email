@@ -1,3 +1,95 @@
-<p>
-  email-form works!
-</p>
+<form class="email-form"
+  [formGroup]="emailFormGroup"
+  (ngSubmit)="submit()">
+  <!-- <multiple-email-input
+    id="to"
+    v-bind:required="true"
+    v-on:updateEmails="updateRecipientEmails">
+  </multiple-email-input>
+
+  <multiple-email-input
+    id="cc"
+    v-bind:required="false"
+    v-on:updateEmails="updateCcEmails">
+  </multiple-email-input>
+
+  <multiple-email-input
+    id="bcc"
+    v-bind:required="false"
+    v-on:updateEmails="updateBccEmails">
+  </multiple-email-input> -->
+
+  <div class="input-group mb-3"
+    v-bind:class="{ 'form-group--error': $v.sender.$error }">
+    <div class="input-group-prepend">
+      <span class="input-group-text"
+        id="sender-addon">
+        From
+      </span>
+    </div>
+
+    <input type="text"
+      class="form-control"
+      formControlName="from"
+      aria-label="sender email address"
+      aria-describedby="sender-addon">
+  </div>
+
+  <div class="input-group mb-3"
+    v-bind:class="{ 'form-group--error': $v.subject.$error }">
+    <div class="input-group-prepend">
+      <span class="input-group-text"
+        id="subject-addon">
+        Subject
+      </span>
+    </div>
+
+    <input type="text"
+      class="form-control"
+      formControlName="subject"
+      aria-label="subject email address"
+      aria-describedby="subject-addon">
+  </div>
+
+  <!-- <div v-if="$v.subject.$error && $v.subject.$dirty"
+    class="alert alert-danger" role="alert">
+    <span v-if="!$v.subject.maxLength">Please enter no more than 78 characters</span>
+  </div>
+
+  <div v-if="$v.sender.$dirty"
+    class="alert alert-danger" role="alert">
+    <span v-if="!$v.sender.required">Please enter sender's email address</span>
+    <span v-if="!$v.sender.email">Please enter a valid email address</span>
+  </div> -->
+
+  <div v-bind:class="{ 'form-group--error': $v.body.$error }"
+    class="input-group body-input">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Body</span>
+    </div>
+    <textarea class="form-control"
+      rows="8"
+      formControlName="body"
+      aria-label="email body">
+    </textarea>
+  </div>
+
+  <div v-if="message"
+    class="alert alert-danger submit-message"
+    role="alert">
+    message
+  </div>
+
+  <div v-if="isSent"
+    class="alert alert-success submit-message"
+    role="alert">
+    You email has been sent successfully!
+  </div>
+
+  <button v-bind:disabled="!recipientEmails.length || $v.$invalid || isSending"
+    type="submit"
+    class="btn btn-primary">
+    <span v-if="!isSending">Send</span>
+    <span v-if="isSending">Waiting&hellip;</span>
+  </button>
+</form>
