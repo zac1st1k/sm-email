@@ -1,3 +1,30 @@
-<p>
-  multi-email-input works!
-</p>
+<div>
+  <div class="badge-container">
+    <div class="badge badge-info">
+      email
+    </div>
+  </div>
+
+  <div [attr.id]="id+'-input'"
+    class="input-group mb-3"
+    v-bind:class="{ 'form-group--error': error }">
+    <div class="input-group-prepend">
+      <span class="input-group-text"
+        [attr.id]="id+'-addon'">
+        {{id}}
+      </span>
+    </div>
+
+    <input type="text"
+      class="form-control"
+      v-model.trim="emailInput"
+      [attr.aria-label]="id+' email address'"
+      [attr.aria-describedby]="id+'-addon'">
+  </div>
+
+  <div v-if="error && isInputTouched"
+    class="alert alert-danger"
+    role="alert">
+    error
+  </div>
+</div>

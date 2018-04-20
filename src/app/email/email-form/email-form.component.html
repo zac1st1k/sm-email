@@ -1,23 +1,20 @@
 <form class="email-form"
   [formGroup]="emailFormGroup"
   (ngSubmit)="submit()">
-  <!-- <multiple-email-input
-    id="to"
-    v-bind:required="true"
-    v-on:updateEmails="updateRecipientEmails">
-  </multiple-email-input>
+  <sm-multi-email-input id="to"
+    isRequired="true"
+    (onUpdate)="updateRecipientEmails($event)">
+  </sm-multi-email-input>
 
-  <multiple-email-input
-    id="cc"
-    v-bind:required="false"
-    v-on:updateEmails="updateCcEmails">
-  </multiple-email-input>
+  <sm-multi-email-input id="cc"
+    isRequired="false"
+    (onUpdate)="updateCcEmails($event)">
+  </sm-multi-email-input>
 
-  <multiple-email-input
-    id="bcc"
-    v-bind:required="false"
-    v-on:updateEmails="updateBccEmails">
-  </multiple-email-input> -->
+  <sm-multi-email-input id="bcc"
+    isRequired="false"
+    (onUpdate)="updateBccEmails($event)">
+  </sm-multi-email-input>
 
   <div class="input-group mb-3"
     v-bind:class="{ 'form-group--error': $v.sender.$error }">
