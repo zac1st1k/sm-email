@@ -1,0 +1,16 @@
+.input-group-text {
+  text-transform: capitalize
+}
+.form-group--error input, .form-group--error .input-group-text {
+  border-color:#d20619;
+  color: #d20619;
+}
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.badge {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}

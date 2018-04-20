@@ -7,7 +7,7 @@
 
   <div [attr.id]="id+'-input'"
     class="input-group mb-3"
-    v-bind:class="{ 'form-group--error': error }">
+    ngClass="{ 'form-group--error': error }">
     <div class="input-group-prepend">
       <span class="input-group-text"
         [attr.id]="id+'-addon'">
