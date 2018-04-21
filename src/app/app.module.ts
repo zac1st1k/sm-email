@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { EmailModule } from './email/email.module';
 import { ROUTES } from './app.routes';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ROUTES } from './app.routes';
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
+    NgbModule.forRoot(),
     EmailModule,
   ],
   providers: [],
