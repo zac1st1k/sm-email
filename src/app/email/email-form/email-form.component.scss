@@ -1,4 +1,4 @@
-$arrow-width: 10px;
+$arrow-width: 5px;
 
 .card {
   padding: 20px;
@@ -20,14 +20,15 @@ $arrow-width: 10px;
 .input-group, .multi-email-input-container {
   .alert {
     position: absolute;
-    // right: 0;
-    // left: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
     z-index: 5;
-    bottom: -55px;
+    bottom: -50px;
     left: 50%;
     transform: translateX(-50%);
+
+    span {
+      padding: 10px;
+    }
   }
 }
 
