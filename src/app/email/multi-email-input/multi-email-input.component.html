@@ -1,8 +1,11 @@
 <div>
-  <div *ngFor="let email of emails; let i = index"
+  <div *ngFor="let email of emails; let index = index"
     class="badge-container">
     <div class="badge badge-info">
-      email
+      {{email}}
+      <button class="remove-button"
+        (click)="removeEmail(index)"
+        aria-label="Remove email">✕</button>
     </div>
   </div>
 
@@ -18,7 +21,7 @@
 
     <input type="text"
       class="form-control"
-      (keyup)="enterEmail($event)"
+      (keyup)="typeEmail($event)"
       [attr.aria-label]="id+' email address'"
       [attr.aria-describedby]="id+'-addon'">
   </div>
