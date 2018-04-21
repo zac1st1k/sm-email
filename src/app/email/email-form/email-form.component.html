@@ -1,6 +1,7 @@
 <form class="email-form"
   [formGroup]="emailFormGroup"
   (ngSubmit)="submit()">
+
   <sm-multi-email-input id="to"
     isRequired="true"
     (onUpdate)="updateRecipientEmails($event)">
@@ -17,10 +18,10 @@
   </sm-multi-email-input>
 
   <div class="input-group mb-3"
-    v-bind:class="{ 'form-group--error': $v.sender.$error }">
+    [ngClass]="{ 'form-group--error': emailFormGroup.get('from').errors }">
     <div class="input-group-prepend">
       <span class="input-group-text"
-        id="sender-addon">
+        id="from-addon">
         From
       </span>
     </div>
@@ -28,12 +29,12 @@
     <input type="text"
       class="form-control"
       formControlName="from"
-      aria-label="sender email address"
-      aria-describedby="sender-addon">
+      aria-label="from email address"
+      aria-describedby="from-addon">
   </div>
 
   <div class="input-group mb-3"
-    v-bind:class="{ 'form-group--error': $v.subject.$error }">
+    [ngClass]="{ 'form-group--error': emailFormGroup.get('subject').errors }">
     <div class="input-group-prepend">
       <span class="input-group-text"
         id="subject-addon">
@@ -48,18 +49,13 @@
       aria-describedby="subject-addon">
   </div>
 
-  <!-- <div v-if="$v.subject.$error && $v.subject.$dirty"
-    class="alert alert-danger" role="alert">
-    <span v-if="!$v.subject.maxLength">Please enter no more than 78 characters</span>
+  <div *ngIf="emailFormGroup.get('subject').errors && emailFormGroup.get('subject').touched"
+    class="alert alert-danger"
+    role="alert">
+    <span *ngIf="!emailFormGroup.get('subject').errors.maxLength">Please enter no more than 78 characters</span>
   </div>
 
-  <div v-if="$v.sender.$dirty"
-    class="alert alert-danger" role="alert">
-    <span v-if="!$v.sender.required">Please enter sender's email address</span>
-    <span v-if="!$v.sender.email">Please enter a valid email address</span>
-  </div> -->
-
-  <div v-bind:class="{ 'form-group--error': $v.body.$error }"
+  <div [ngClass]="{ 'form-group--error': emailFormGroup.get('body').errors }"
     class="input-group body-input">
     <div class="input-group-prepend">
       <span class="input-group-text">Body</span>
@@ -71,22 +67,22 @@
     </textarea>
   </div>
 
-  <div v-if="message"
+  <div *ngIf="errorMessage"
     class="alert alert-danger submit-message"
     role="alert">
     message
   </div>
 
-  <div v-if="isSent"
+  <div *ngIf="isSent"
     class="alert alert-success submit-message"
     role="alert">
     You email has been sent successfully!
   </div>
 
-  <button v-bind:disabled="!recipientEmails.length || $v.$invalid || isSending"
-    type="submit"
-    class="btn btn-primary">
-    <span v-if="!isSending">Send</span>
-    <span v-if="isSending">Waiting&hellip;</span>
+  <button type="submit"
+    class="btn btn-primary"
+    [disabled]="emailFormGroup.invalid || isSending">
+    <span *ngIf="!isSending">Send</span>
+    <span *ngIf="isSending">Waiting&hellip;</span>
   </button>
 </form>

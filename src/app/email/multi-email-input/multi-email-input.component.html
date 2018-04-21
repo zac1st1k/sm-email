@@ -1,7 +1,7 @@
 <div>
   <div class="badge-container">
     <div class="badge badge-info">
-      emailsdf
+      email
     </div>
   </div>
 
@@ -22,7 +22,7 @@
       [attr.aria-describedby]="id+'-addon'">
   </div>
 
-  <div v-if="error && isInputTouched"
+  <div *ngIf="error && isInputTouched"
     class="alert alert-danger"
     role="alert">
     error

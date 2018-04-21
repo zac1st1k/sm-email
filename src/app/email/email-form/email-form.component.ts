@@ -39,6 +39,7 @@ export class EmailFormComponent implements OnInit {
   isSending: boolean;
   isErrorShown: boolean;
   errorMessage: string;
+  isSent: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,6 +53,7 @@ export class EmailFormComponent implements OnInit {
   updateRecipientEmails() { }
   updateCcEmails() { }
   updateBccEmails() { }
+
   submit(): void {
     this.isSending = true;
     const request = this.emailFormGroup.value as EmailRequest;

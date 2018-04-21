@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+.input-group-text {
+  text-transform: capitalize;
+}
+
+.form-group--error {
+  .input-group-text, input {
+    border-color:#d20619;
+    color: #d20619;
+  }
+
+  .input-group-text  {
+    background-color: #f5c6cb;
+  }
+}
+
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.badge {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
