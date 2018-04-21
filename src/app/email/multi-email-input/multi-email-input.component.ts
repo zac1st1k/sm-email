@@ -49,7 +49,9 @@ export class MultiEmailInputComponent implements ControlValueAccessor {
     if ((this.email.indexOf(';') > -1) && (EMAIL_RE.test(this.email))) {
       this.email = this.email.slice(0, -1);
       this.emails.push(this.email);
-      this.emailList.push(this.email);
+      if (this.emailList.indexOf(this.email) === -1) {
+        this.emailList.push(this.email);
+      }
       this.email = '';
       event.target.value = '';
     }

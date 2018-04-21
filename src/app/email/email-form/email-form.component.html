@@ -1,4 +1,4 @@
-<form class="email-form"
+<form class="email-form card"
   [formGroup]="emailFormGroup"
   (ngSubmit)="submit()">
 
@@ -133,7 +133,7 @@
   <button type="submit"
     class="btn btn-primary"
     [disabled]="emailFormGroup.invalid || isSending">
-    <span *ngIf="!isSending">Send</span>
-    <span *ngIf="isSending">Waiting&hellip;</span>
+    <span *ngIf="!isSending">Send email</span>
+    <span *ngIf="isSending">Please waiting&hellip;</span>
   </button>
 </form>

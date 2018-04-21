@@ -4,9 +4,11 @@ export const EMAIL_RE = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[
 
 export function validateEmails(control: FormControl) {
   if (control.value && control.value.length && control.value[0] !== '') {
-    return control.value.every(email =>
-      EMAIL_RE.test(email)
-    ) ? null : {
+    const areEmailsValid = control.value
+      .filter(email => email)
+      .every(email => EMAIL_RE.test(email));
+    return areEmailsValid ?
+      null : {
         emailsValid: false
       };
   } else {

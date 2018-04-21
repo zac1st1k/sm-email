@@ -1,4 +1,10 @@
 $arrow-width: 10px;
+
+.card {
+  padding: 20px;
+  position: relative;
+}
+
 .arrow::before {
   content: '';
   position: absolute;

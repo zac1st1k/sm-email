@@ -1,4 +1,14 @@
 <div>
+  <div class="badge-container">
+    <div *ngFor="let email of emails; let index = index"
+      class="badge badge-info">
+      {{email}}
+      <button class="remove-button"
+        (click)="removeEmail(index)"
+        aria-label="Remove email">✕</button>
+    </div>
+  </div>
+
   <div [attr.id]="id+'-input'"
     class="input-group mb-4">
     <div class="input-group-prepend">
@@ -6,16 +16,6 @@
         [attr.id]="id+'-addon'">
         {{id}}
       </span>
-    </div>
-
-    <div *ngFor="let email of emails; let index = index"
-      class="badge-container">
-      <div class="badge badge-info">
-        {{email}}
-        <button class="remove-button"
-          (click)="removeEmail(index)"
-          aria-label="Remove email">✕</button>
-      </div>
     </div>
 
     <input type="text"

@@ -59,11 +59,21 @@ export class EmailFormComponent implements OnInit {
       .finally(() => (this.isSending = false))
       .subscribe(
         (response: EmailResponse) => {
+          this.isSending = false
           this.isErrorShown = false;
         },
         (error: HttpErrorResponse) => {
-          this.isErrorShown = true;
-          this.errorMessage = error.message;
+          setTimeout(() => {
+            this.isSending = false;
+
+            if (this.isErrorShown) {
+              this.isErrorShown = false;
+              this.isSent = true;
+              return;
+            }
+
+            this.isErrorShown = true;
+          }, 3000);
         },
     );
   }
