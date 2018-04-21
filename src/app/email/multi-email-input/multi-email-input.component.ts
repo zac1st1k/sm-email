@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -15,8 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class MultiEmailInputComponent implements ControlValueAccessor {
   @Input() id: string;
-  @Input() isRequired: boolean;
-
+  email: string;
   emails: string[] = [];
 
   onChange = (email: string[]) => { };
@@ -28,21 +27,24 @@ export class MultiEmailInputComponent implements ControlValueAccessor {
   }
 
   typeEmail(event: any) {
-    let email = event.target.value;
+    this.email = event.target.value;
+    let emailsOld = this.emails.slice(0);
 
-    if (email.indexOf(';') > -1) {
-      email = email.slice(0, -1);
-      this.emails.push(email);
+    if (this.email.indexOf(';') > -1) {
+      this.email = this.email.slice(0, -1);
+      this.emails.push(this.email);
+      this.email = '';
       event.target.value = '';
     }
 
-    this.emails;
-    const result = this.emails.concat([email]);
+    const result = emailsOld.concat([this.email]);
     this.writeValue(result);
   }
 
   removeEmail(index: number) {
     this.emails.splice(index, 1);
+    const result = this.emails.concat([this.email]);
+    this.writeValue(result);
   }
 
   writeValue(emails: string[]): void {

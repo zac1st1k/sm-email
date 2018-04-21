@@ -19,21 +19,15 @@
   </div>
 
   <sm-multi-email-input id="to"
-    formControlName="to"
-    isRequired="true"
-    (onUpdate)="updateRecipientEmails($event)">
+    formControlName="to">
   </sm-multi-email-input>
 
   <sm-multi-email-input id="cc"
-    formControlName="cc"
-    isRequired="false"
-    (onUpdate)="updateCcEmails($event)">
+    formControlName="cc">
   </sm-multi-email-input>
 
   <sm-multi-email-input id="bcc"
-    formControlName="bcc"
-    isRequired="false"
-    (onUpdate)="updateBccEmails($event)">
+    formControlName="bcc">
   </sm-multi-email-input>
 
   <div class="input-group mb-3"

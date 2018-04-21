@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { EmailRequest, EmailResponse } from '../models/email.model';
 import { EmailApiService } from '../services/email-api.service';
+import { validateEmails } from '../services/emails-validator.service';
 
 interface EmailFormGroup extends FormGroup {
   controls: {
@@ -27,7 +28,7 @@ interface EmailFormModel {
   body: string;
 }
 
-const EMAIL_REGULAR_EXPRESSION = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*;?$/;
+const EMAIL_RE = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @Component({
   selector: 'sm-email-form',
@@ -50,10 +51,6 @@ export class EmailFormComponent implements OnInit {
     this.emailFormGroup = this.initEmailForm() as EmailFormGroup;
   }
 
-  updateRecipientEmails() { }
-  updateCcEmails() { }
-  updateBccEmails() { }
-
   submit(): void {
     this.isSending = true;
     const request = this.emailFormGroup.value as EmailRequest;
@@ -74,31 +71,29 @@ export class EmailFormComponent implements OnInit {
   private initEmailForm(): FormGroup {
     return this.formBuilder.group({
       from: [
-        {
-          value: 'zacfirst@gmail.com',
-          disabled: true
-        },
+        'zacfirst@gmail.com',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.pattern(EMAIL_RE),
         ]),
       ],
       to: [
-        'test@mail.com',
+        '',
         Validators.compose([
           Validators.required,
-          Validators.pattern(EMAIL_REGULAR_EXPRESSION),
+          validateEmails,
         ]),
       ],
       cc: [
         '',
         Validators.compose([
-          Validators.pattern(EMAIL_REGULAR_EXPRESSION),
+          validateEmails,
         ]),
       ],
       bcc: [
         '',
         Validators.compose([
-          Validators.pattern(EMAIL_REGULAR_EXPRESSION),
+          validateEmails,
         ]),
       ],
       subject: [
