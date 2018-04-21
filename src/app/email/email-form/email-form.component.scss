@@ -1,0 +1,30 @@
+$arrow-width: 10px;
+.arrow::before {
+  content: '';
+  position: absolute;
+  top: -$arrow-width;
+  left: 50%;
+  margin-left: -$arrow-width;
+  color: #f5c6cb;
+  border-left: $arrow-width solid transparent;
+  border-right: $arrow-width solid transparent;
+  border-bottom: $arrow-width solid currentColor;
+}
+
+.input-group, .multi-email-input-container {
+  .alert {
+    position: absolute;
+    // right: 0;
+    // left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    z-index: 5;
+    bottom: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.multi-email-input-container {
+  position: relative;
+}
