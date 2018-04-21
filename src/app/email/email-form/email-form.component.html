@@ -12,21 +12,10 @@
 
     <input type="text"
       class="form-control"
-      formControlName="from"
-      placeholder="Please enter an Email"
       aria-label="from email address"
-      aria-describedby="from-addon">
-
-    <div *ngIf="emailFormGroup.get('from').errors && emailFormGroup.get('from').touched"
-      class="alert alert-danger arrow"
-      role="alert">
-      <span *ngIf="emailFormGroup.get('from').errors['required']">
-        Please enter an email
-      </span>
-      <span *ngIf="emailFormGroup.get('from').errors['pattern']">
-        Please enter an valid email
-      </span>
-    </div>
+      value="sender@mail.com"
+      aria-describedby="from-addon"
+      disabled>
   </div>
 
   <div class="multi-email-input-container">
@@ -104,7 +93,7 @@
     </div>
 
     <textarea class="form-control"
-      rows="8"
+      rows="4"
       formControlName="body"
       aria-label="email body">
     </textarea>
@@ -118,7 +107,7 @@
     </div>
   </div>
 
-  <div *ngIf="errorMessage"
+  <div *ngIf="isErrorShown"
     class="alert alert-danger submit-message"
     role="alert">
     Something went wrong, please try again later.

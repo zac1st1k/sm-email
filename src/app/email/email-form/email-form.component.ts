@@ -10,7 +10,6 @@ import { validateEmails } from '../services/emails-validator.service';
 
 interface EmailFormGroup extends FormGroup {
   controls: {
-    from: FormControl;
     to: FormControl;
     cc: FormControl;
     bcc: FormControl;
@@ -20,7 +19,6 @@ interface EmailFormGroup extends FormGroup {
 }
 
 interface EmailFormModel {
-  from: string[];
   to: string[];
   cc: string[];
   bcc: string[];
@@ -39,7 +37,6 @@ export class EmailFormComponent implements OnInit {
   emailFormGroup: EmailFormGroup;
   isSending: boolean;
   isErrorShown: boolean;
-  errorMessage: string;
   isSent: boolean;
 
   constructor(
@@ -53,40 +50,34 @@ export class EmailFormComponent implements OnInit {
 
   submit(): void {
     this.isSending = true;
+    this.isSent = false;
+    this.isErrorShown = false;
     const request = this.emailFormGroup.value as EmailRequest;
+    console.log('request', request);
     this.emailApiService
       .send(request)
-      .finally(() => (this.isSending = false))
       .subscribe(
         (response: EmailResponse) => {
-          this.isSending = false
           this.isErrorShown = false;
+          this.isSending = false;
+          this.isSent = true;
         },
         (error: HttpErrorResponse) => {
           setTimeout(() => {
             this.isSending = false;
-
-            if (this.isErrorShown) {
-              this.isErrorShown = false;
+            if (Math.floor(Math.random() * 2)) {
               this.isSent = true;
-              return;
+              this.isErrorShown = false;
+            } else {
+              this.isSent = false;
+              this.isErrorShown = true;
             }
-
-            this.isErrorShown = true;
-          }, 3000);
-        },
-    );
+          }, 2000);
+        });
   }
 
   private initEmailForm(): FormGroup {
     return this.formBuilder.group({
-      from: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(EMAIL_RE),
-        ]),
-      ],
       to: [
         '',
         Validators.compose([
