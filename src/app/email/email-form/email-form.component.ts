@@ -71,7 +71,7 @@ export class EmailFormComponent implements OnInit {
   private initEmailForm(): FormGroup {
     return this.formBuilder.group({
       from: [
-        'zacfirst@gmail.com',
+        '',
         Validators.compose([
           Validators.required,
           Validators.pattern(EMAIL_RE),

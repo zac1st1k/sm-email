@@ -1,16 +1,6 @@
 <div>
-  <div *ngFor="let email of emails; let index = index"
-    class="badge-container">
-    <div class="badge badge-info">
-      {{email}}
-      <button class="remove-button"
-        (click)="removeEmail(index)"
-        aria-label="Remove email">✕</button>
-    </div>
-  </div>
-
   <div [attr.id]="id+'-input'"
-    class="input-group mb-3"
+    class="input-group mb-4"
     ngClass="{ 'form-group--error': error }">
     <div class="input-group-prepend">
       <span class="input-group-text"
@@ -19,9 +9,21 @@
       </span>
     </div>
 
+    <div *ngFor="let email of emails; let index = index"
+      class="badge-container">
+      <div class="badge badge-info">
+        {{email}}
+        <button class="remove-button"
+          (click)="removeEmail(index)"
+          aria-label="Remove email">✕</button>
+      </div>
+    </div>
+
     <input type="text"
       class="form-control"
+      placeholder="Please enter emails separated by ';'"
       (keyup)="typeEmail($event)"
+      (blur)="onTouched()"
       [ngbTypeahead]="search"
       [attr.aria-label]="id+' email address'"
       [attr.aria-describedby]="id+'-addon'">
