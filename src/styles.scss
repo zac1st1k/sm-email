@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-.input-group-text {
-  text-transform: capitalize;
+#cc-input, #bcc-input {
+  .input-group-text {
+    text-transform: uppercase;
+  }
 }
 
 .form-group--error {

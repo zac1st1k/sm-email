@@ -83,7 +83,7 @@ export class EmailFormComponent implements OnInit {
         ]),
       ],
       to: [
-        '',
+        'test@mail.com',
         Validators.compose([
           Validators.required,
           Validators.pattern(EMAIL_REGULAR_EXPRESSION),

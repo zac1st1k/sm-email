@@ -6,7 +6,6 @@ import { EmailFormComponent } from './email-form/email-form.component';
 import { EmailRoutingModule } from './email-routing.module';
 import { MultiEmailInputComponent } from './multi-email-input/multi-email-input.component';
 import { EmailApiService } from './services/email-api.service';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +15,7 @@ import { EmailApiService } from './services/email-api.service';
   ],
   declarations: [
     MultiEmailInputComponent,
-    EmailFormComponent
+    EmailFormComponent,
   ],
   providers: [
     EmailApiService
