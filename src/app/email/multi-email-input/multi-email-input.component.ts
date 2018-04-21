@@ -49,21 +49,21 @@ export class MultiEmailInputComponent implements ControlValueAccessor {
 
     if ((this.email.indexOf(';') > -1) && (EMAIL_RE.test(this.email))) {
       this.email = this.email.slice(0, -1);
-      this.emails.push(this.email);
-      if (this.emailList.indexOf(this.email) === -1) {
-        this.emailList.push(this.email);
+      this.emails = [...this.emails, this.email];
+      if (this.emailList.indexOf(this.email) < 0) {
+        this.emailList = [...this.emailList, this.email];
       }
       this.email = '';
       event.target.value = '';
     }
 
-    const result = emailsOld.concat([emailOld]);
+    const result = [...emailsOld, emailOld];
     this.writeValue(result);
   }
 
   removeEmail(index: number) {
     this.emails.splice(index, 1);
-    const result = this.emails.concat([this.email]);
+    const result = [...this.emails, this.email];
     this.writeValue(result);
   }
 

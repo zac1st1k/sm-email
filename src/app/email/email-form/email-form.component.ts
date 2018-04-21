@@ -26,8 +26,6 @@ interface EmailFormModel {
   body: string;
 }
 
-const EMAIL_RE = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
 @Component({
   selector: 'sm-email-form',
   templateUrl: './email-form.component.html',
