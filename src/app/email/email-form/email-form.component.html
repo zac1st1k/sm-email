@@ -2,10 +2,7 @@
   [formGroup]="emailFormGroup"
   (ngSubmit)="submit()">
 
-  <div class="input-group mb-4"
-    [ngClass]="{ 'form-group--error':
-    emailFormGroup.get('from').errors &&
-    emailFormGroup.get('from').touched }">
+  <div class="input-group mb-4">
     <div class="input-group-prepend">
       <span class="input-group-text"
         id="from-addon">
@@ -57,10 +54,7 @@
     <div *ngIf="emailFormGroup.get('cc').errors && emailFormGroup.get('cc').touched"
       class="alert alert-danger arrow"
       role="alert">
-      <span *ngIf="emailFormGroup.get('cc').errors['required']">
-        Please enter an email
-      </span>
-      <span *ngIf="!emailFormGroup.get('cc').errors['required']">
+      <span>
         Please enter an valid email
       </span>
     </div>
@@ -70,20 +64,17 @@
     <sm-multi-email-input id="bcc"
       formControlName="bcc">
     </sm-multi-email-input>
+
     <div *ngIf="emailFormGroup.get('bcc').errors && emailFormGroup.get('bcc').touched"
       class="alert alert-danger arrow"
       role="alert">
-      <span *ngIf="emailFormGroup.get('bcc').errors['required']">
-        Please enter an email
-      </span>
-      <span *ngIf="!emailFormGroup.get('bcc').errors['required']">
+      <span>
         Please enter an valid email
       </span>
     </div>
   </div>
 
-  <div class="input-group mb-4"
-    [ngClass]="{ 'form-group--error': emailFormGroup.get('subject').errors }">
+  <div class="input-group mb-4">
     <div class="input-group-prepend">
       <span class="input-group-text"
         id="subject-addon">
@@ -101,14 +92,13 @@
       class="alert alert-danger arrow"
       role="alert">
       <span *ngIf="!emailFormGroup.get('subject').errors.maxLength">
-        Please enter no more than 78 characters
+        No more than 78 characters
       </span>
     </div>
   </div>
 
 
-  <div class="input-group body-input mb-4"
-    [ngClass]="{ 'form-group--error': emailFormGroup.get('body').errors }">
+  <div class="input-group body-input mb-4">
     <div class="input-group-prepend">
       <span class="input-group-text">Body</span>
     </div>
@@ -123,7 +113,7 @@
       class="alert alert-danger arrow"
       role="alert">
       <span *ngIf="!emailFormGroup.get('body').errors.maxLength">
-        Please enter no more than 1000 characters
+        No more than 1000 characters
       </span>
     </div>
   </div>
@@ -131,7 +121,7 @@
   <div *ngIf="errorMessage"
     class="alert alert-danger submit-message"
     role="alert">
-    message
+    Something went wrong, please try again later.
   </div>
 
   <div *ngIf="isSent"

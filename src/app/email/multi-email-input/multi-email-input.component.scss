@@ -1,12 +1,23 @@
 .input-group-text {
   text-transform: capitalize;
 }
+
 .remove-button {
   background-color: transparent;
   color: white;
   border-width: 0;
   font-size: 12px;
 }
+
 .badge-container {
   position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  top: -22px;
+}
+
+.badge {
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
