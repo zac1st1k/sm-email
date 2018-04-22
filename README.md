@@ -1,30 +1,40 @@
-# SmEmail
+# SM Angular Email
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+This project allows user to send, cc and bcc emails to multiple recipients via an online form.
 
 # Screen recording
+
 ![sm email](sm-demo.gif)
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Instructions
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Enter an email and press `;` or `Enter Key` to save an email into multiple email pills
+* To see the validation messages, you have to BLUR on the input filed. This pattern is for hiding annoying error messages when user type email address.
+* After saving an email address, this email address will be available in the auto-suggestion list
+* Validation rules
+  * Recipient email cannot be empty
+  * All Email fields must comply with [W3C input email spec](https://www.w3.org/TR/2012/WD-html-markup-20120320/input.email.html)
+* Server response is mocked and always successful
 
-## Build
+## Technical implementation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+* Email module is an individual module with module route
+* Email module has no external service or component dependencies
+* Form is implemented based on [Angular reactive form](https://angular.io/guide/reactive-forms)
+* Multiple email control is implemented based on[Angular ControlValueAccessor](https://angular.io/api/forms/ControlValueAccessor)
+* Multiple emails Validation is piped through reactive form custom validator
+* Typeahead directive is from [ng-bootstrap](https://ng-bootstrap.github.io/#/components/typeahead/examples)
 
-## Running unit tests
+## Potential improvement
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Centralized notification service
+* Global interceptor that handles error messages
+* Full screen masked loader
+* More clear form layout probably depends on focus group feedback
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Notes
+This repo only contains a front end as agreed. Initially, I was implementing this with Vue and Node until I got more clarity from Stefano. After realising that using an unfamiliar framework may affect my chance to pass this test, 3 days ago I decided to switch to angular to fully show my technical skills. Here is the previous incomplete [Vue & Node stack](https://github.com/zac1st1k/vue-email-demo) just for reference.
