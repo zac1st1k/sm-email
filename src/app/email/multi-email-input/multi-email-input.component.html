@@ -3,9 +3,12 @@
     <div *ngFor="let email of emails; let index = index"
       class="badge badge-info">
       {{email}}
-      <button class="remove-button"
+      <button type="button"
+        class="remove-button"
         (click)="removeEmail(index)"
-        aria-label="Remove email">✕</button>
+        aria-label="Remove email">
+        ✕
+      </button>
     </div>
   </div>
 

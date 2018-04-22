@@ -47,30 +47,16 @@ export class EmailFormComponent implements OnInit {
   }
 
   submit(): void {
-    this.isSending = true;
-    this.isSent = false;
-    this.isErrorShown = false;
+    this.cleanMessages();
     const request = this.emailFormGroup.value as EmailRequest;
-    console.log('request', request);
     this.emailApiService
       .send(request)
       .subscribe(
         (response: EmailResponse) => {
-          this.isErrorShown = false;
-          this.isSending = false;
-          this.isSent = true;
+          this.handleMockResponse('success');
         },
         (error: HttpErrorResponse) => {
-          setTimeout(() => {
-            this.isSending = false;
-            if (Math.floor(Math.random() * 2)) {
-              this.isSent = true;
-              this.isErrorShown = false;
-            } else {
-              this.isSent = false;
-              this.isErrorShown = true;
-            }
-          }, 2000);
+          this.handleMockResponse('error', error.message);
         });
   }
 
@@ -108,5 +94,26 @@ export class EmailFormComponent implements OnInit {
         ]),
       ],
     });
+  }
+
+  private cleanMessages() {
+    this.isSending = true;
+    this.isSent = false;
+    this.isErrorShown = false;
+  }
+
+  // mocking server response always return success
+  private handleMockResponse(state: 'success' | 'error', message?: string) {
+    if (state === 'success') {
+      this.isErrorShown = false;
+      this.isSending = false;
+      this.isSent = true;
+    } else {
+      setTimeout(() => {
+        this.isSending = false;
+        this.isSent = true;
+        this.isErrorShown = false;
+      }, 2000);
+    }
   }
 }
